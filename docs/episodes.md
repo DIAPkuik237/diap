@@ -5,10 +5,10 @@ Chaque épisode de la série **« De zéro à Architecte IA »** ajoute une capa
 
 | Épisode | Brique | Fichier | Vidéo |
 |---------|--------|---------|-------|
-| **Ép. 1** — On démonte un agent IA | *Anatomie (étape)* | — | [regarder](À_COMPLÉTER) |
+| **Ép. 1** — On démonte un agent IA | *Anatomie (étape)* | — | [regarder](https://youtu.be/ALQ734wucYc) |
 | **Ép. 2** — Comment parler à une IA ? | 🟩 **LLM** | [`premier_appel.py`](../diap/premier_appel.py) | [regarder](https://youtu.be/9U1OrD1HkxY) |
-| **Ép. 3** — On donne des yeux à une IA | 🟩 **API** | [`meteo.py`](../diap/meteo.py) · [`diap_meteo.py`](../diap/diap_meteo.py) | [regarder](À_COMPLÉTER) |
-| **Ép. 4** — DIAP oublie tout | 🟩 **Mémoire** | [`diap_memoire.py`](../diap/diap_memoire.py) | [regarder](À_COMPLÉTER) |
+| **Ép. 3** — On donne des yeux à une IA | 🟩 **API** | [`meteo.py`](../diap/meteo.py) · [`diap_meteo.py`](../diap/diap_meteo.py) | [regarder](https://youtu.be/YOokoooXgvo) |
+| **Ép. 4** — DIAP oublie tout | 🟩 **Mémoire** | [`diap_memoire.py`](../diap/diap_memoire.py) | [regarder](https://youtu.be/UrDavH1GViY) |
 | **Ép. 5** — *(à venir)* | ⬜ Raisonnement | — | — |
 
 ---
