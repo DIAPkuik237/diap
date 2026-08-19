@@ -1,0 +1,32 @@
+# 🎥 Correspondance épisodes ⇄ code
+
+Chaque épisode de la série **« De zéro à Architecte IA »** ajoute une capacité
+à DIAP. Ce tableau relie chaque vidéo au fichier de code correspondant.
+
+| Épisode | Brique | Fichier | Vidéo |
+|---------|--------|---------|-------|
+| **Ép. 1** — On démonte un agent IA | *Anatomie (étape)* | — | [regarder](À_COMPLÉTER) |
+| **Ép. 2** — Comment parler à une IA ? | 🟩 **LLM** | [`premier_appel.py`](../diap/premier_appel.py) | [regarder](https://youtu.be/9U1OrD1HkxY) |
+| **Ép. 3** — On donne des yeux à une IA | 🟩 **API** | [`meteo.py`](../diap/meteo.py) · [`diap_meteo.py`](../diap/diap_meteo.py) | [regarder](À_COMPLÉTER) |
+| **Ép. 4** — DIAP oublie tout | 🟩 **Mémoire** | [`diap_memoire.py`](../diap/diap_memoire.py) | [regarder](À_COMPLÉTER) |
+| **Ép. 5** — *(à venir)* | ⬜ Raisonnement | — | — |
+
+---
+
+## 📂 Les fichiers, dans l'ordre de construction
+
+- **`premier_appel.py`** — le premier appel à un modèle de langage.
+  DIAP prononce ses premiers mots.
+
+- **`meteo.py`** — appeler une API réelle (météo) depuis Python.
+  On découvre qu'une API n'est pas réservée aux IA.
+
+- **`diap_meteo.py`** — le *function calling* : DIAP décide **lui-même**
+  d'aller chercher l'information. Le LLM décide, le code exécute.
+
+- **`diap_memoire.py`** — la mémoire de conversation : une liste de messages
+  qu'on accumule et qu'on renvoie en entier à chaque appel.
+
+---
+
+📺 **Playlist complète** : https://www.youtube.com/playlist?list=PLX1O_iVn_fzc
