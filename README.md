@@ -61,15 +61,16 @@ pip install -r requirements.txt
 
 ```
 diap/
-├── diap/                   # le code de l'agent (grandit à chaque brique)
-│   ├── premier_appel.py    # brique LLM  — DIAP parle
-│   ├── meteo.py            # brique API  — appeler une API réelle
-│   ├── diap_meteo.py       # brique API  — function calling : DIAP décide
-│   └── diap_memoire.py     # brique Mémoire — DIAP se souvient
+├── diap/                     # le code de l'agent (grandit à chaque brique)
+│   ├── premier_appel.py      # brique LLM  — DIAP parle
+│   ├── meteo.py              # brique API  — appeler une API réelle
+│   ├── diap_meteo.py         # brique API  — function calling : DIAP décide
+│   ├── diap_memoire.py       # brique Mémoire — DIAP se souvient
+│   └── diap_raisonnement.py  # brique Raisonnement — Chain of Thought
 ├── docs/
-│   ├── architecture.md     # schéma et notes d'architecture de DIAP
-│   └── episodes.md         # correspondance épisodes ⇄ code
-├── .env.example            # modèle de configuration (sans secrets)
+│   ├── architecture.md       # schéma et notes d'architecture de DIAP
+│   └── episodes.md           # correspondance épisodes ⇄ code
+├── .env.example              # modèle de configuration (sans secrets)
 ├── .gitignore
 ├── requirements.txt
 └── README.md
