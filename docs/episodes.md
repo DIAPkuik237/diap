@@ -9,7 +9,7 @@ Chaque épisode de la série **« De zéro à Architecte IA »** ajoute une capa
 | **Ép. 2** — Comment parler à une IA ? | 🟩 **LLM** | [`premier_appel.py`](../diap/premier_appel.py) | [regarder](https://youtu.be/9U1OrD1HkxY) |
 | **Ép. 3** — On donne des yeux à une IA | 🟩 **API** | [`meteo.py`](../diap/meteo.py) · [`diap_meteo.py`](../diap/diap_meteo.py) | [regarder](À_COMPLÉTER) |
 | **Ép. 4** — DIAP oublie tout | 🟩 **Mémoire** | [`diap_memoire.py`](../diap/diap_memoire.py) | [regarder](À_COMPLÉTER) |
-| **Ép. 5** — *(à venir)* | ⬜ Raisonnement | — | — |
+| **Ép. 5** — DIAP répond trop vite (réparons ça) | 🟩 Raisonnement | [`diap_raisonnement.py`](../diap/diap_raisonnement.py) | [regarder](https://youtu.be/ZllNQHJTifs) |
 
 ---
 
