@@ -12,7 +12,6 @@ Chaque épisode de la série **« De zéro à Architecte IA »** ajoute une capa
 | **Ép. 5** — DIAP répond trop vite (réparons ça) | 🟩 Raisonnement | [`diap_raisonnement.py`](../diap/diap_raisonnement.py) | [regarder](https://youtu.be/ZllNQHJTifs) |
 
 ## 📂 Les fichiers, dans l'ordre de construction
-
 - **`premier_appel.py`** — le premier appel à un modèle de langage.
   DIAP prononce ses premiers mots.
 
@@ -24,6 +23,8 @@ Chaque épisode de la série **« De zéro à Architecte IA »** ajoute une capa
 
 - **`diap_memoire.py`** — la mémoire de conversation : une liste de messages
   qu'on accumule et qu'on renvoie en entier à chaque appel.
+
+- **`diap_raisonnement.py`** — *Chain of Thought* : DIAP décompose un problème avant de conclure, grâce au rôle *system* qui lui impose une méthode de travail.
 
 ---
 
