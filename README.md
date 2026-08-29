@@ -66,7 +66,7 @@ diap/
 │   ├── meteo.py              # brique API  — appeler une API réelle
 │   ├── diap_meteo.py         # brique API  — function calling : DIAP décide
 │   ├── diap_memoire.py       # brique Mémoire — DIAP se souvient
-│   └── diap_raisonnement.py  # brique Raisonnement — Chain of Thought
+│   └── diap_raisonnement.py  # brique Raisonnement — Chain of Thought : DIAP décompose un problème avant de conclure
 ├── docs/
 │   ├── architecture.md       # schéma et notes d'architecture de DIAP
 │   └── episodes.md           # correspondance épisodes ⇄ code
