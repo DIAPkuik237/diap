@@ -31,7 +31,7 @@ DIAP orchestre plusieurs composants pour percevoir, se souvenir, raisonner et ag
 | LLM           | ✅ fait     | Comprendre et générer du langage                  |
 | API           | ✅ fait     | Accéder au monde réel (function calling)          |
 | Mémoire       | ✅ fait     | Se souvenir de la conversation                    |
-| Raisonnement  | ⬜ à venir  | Décomposer un problème avant de conclure          |
+| Raisonnement  | ✅ fait     | Décomposer un problème avant de conclure          |
 | Outils        | ⬜ à venir  | Utiliser et choisir parmi plusieurs outils        |
 | Backend       | ⬜ à venir  | Exposer DIAP comme un service                     |
 | Déploiement   | ⬜ à venir  | Faire tourner DIAP en ligne                       |
