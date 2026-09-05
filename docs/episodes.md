@@ -10,7 +10,7 @@ Chaque épisode de la série **« De zéro à Architecte IA »** ajoute une capa
 | **Ép. 3** — On donne des yeux à une IA | 🟩 **API** | [`meteo.py`](../diap/meteo.py) · [`diap_meteo.py`](../diap/diap_meteo.py) | [regarder](https://youtu.be/YOokoooXgvo) |
 | **Ép. 4** — DIAP oublie tout | 🟩 **Mémoire** | [`diap_memoire.py`](../diap/diap_memoire.py) | [regarder](https://youtu.be/UrDavH1GViY) |
 | **Ép. 5** — DIAP répond trop vite (réparons ça) | 🟩 Raisonnement | [`diap_raisonnement.py`](../diap/diap_raisonnement.py) | [regarder](https://youtu.be/ZllNQHJTifs) |
-| **Ép. 6** — DIAP passe à l'action | 🟩 **Outils** | `diap_outils.py` | [regarder](https://youtu.be/sHgAHJDI028) |
+| **Ép. 6** — DIAP passe à l'action | 🟩 **Outils** | [`diap_outils.py`](../diap/diap_outils.py) | [regarder](https://youtu.be/sHgAHJDI028) |
 
 ## 📂 Les fichiers, dans l'ordre de construction
 - **`premier_appel.py`** — le premier appel à un modèle de langage.
