@@ -33,3 +33,6 @@ Thumbs.db
 *.log
 /output/
 /data/local/
+
+# données locales générées par les tests de DIAP
+notes_diap/

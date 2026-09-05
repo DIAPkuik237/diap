@@ -21,7 +21,7 @@ résout devient une nouvelle capacité de DIAP.
 - [x] **API** — donner des yeux à DIAP (accès au monde réel + function calling)
 - [x] **Mémoire** — DIAP se souvient de la conversation
 - [x] **Raisonnement** — DIAP décompose un problème avant de conclure
-- [ ] **Outils** — DIAP utilise plusieurs outils et choisit le bon
+- [x] **Outils** — DIAP utilise plusieurs outils et choisit le bon
 - [ ] **Backend** — DIAP devient un vrai service
 - [ ] **Déploiement** — DIAP tourne en ligne
 
