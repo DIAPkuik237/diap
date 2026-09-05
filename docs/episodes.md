@@ -26,7 +26,7 @@ Chaque épisode de la série **« De zéro à Architecte IA »** ajoute une capa
   qu'on accumule et qu'on renvoie en entier à chaque appel.
 
 - **`diap_raisonnement.py`** — *Chain of Thought* : DIAP décompose un problème avant de conclure, grâce au rôle *system* qui lui impose une méthode de travail.
-- `diap_outils.py` — un outil qui **agit** au lieu de lire : DIAP écrit un vrai fichier sur le disque, avec une confirmation humaine avant chaque action (*human in the loop*).
+- **`diap_outils.py`** — un outil qui **agit** au lieu de lire : DIAP écrit un vrai fichier sur le disque, avec une confirmation humaine avant chaque action (*human in the loop*).
 
 ---
 
