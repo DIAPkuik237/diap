@@ -32,7 +32,7 @@ DIAP orchestre plusieurs composants pour percevoir, se souvenir, raisonner et ag
 | API           | ✅ fait     | Accéder au monde réel (function calling)          |
 | Mémoire       | ✅ fait     | Se souvenir de la conversation                    |
 | Raisonnement  | ✅ fait     | Décomposer un problème avant de conclure          |
-| Outils        | ⬜ à venir  | Utiliser et choisir parmi plusieurs outils        |
+| Outils        | ✅ fait     | Utiliser et choisir parmi plusieurs outils        |
 | Backend       | ⬜ à venir  | Exposer DIAP comme un service                     |
 | Déploiement   | ⬜ à venir  | Faire tourner DIAP en ligne                       |
 
