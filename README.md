@@ -22,7 +22,7 @@ résout devient une nouvelle capacité de DIAP.
 - [x] **Mémoire** — DIAP se souvient de la conversation
 - [x] **Raisonnement** — DIAP décompose un problème avant de conclure
 - [x] **Outils** — DIAP utilise plusieurs outils et choisit le bon
-- [ ] **Backend** — DIAP devient un vrai service
+- [x] **Backend** — DIAP devient un vrai service
 - [ ] **Déploiement** — DIAP tourne en ligne
 
 *(« Anatomie » est l'étape de compréhension initiale — pas une brique.)*
@@ -50,6 +50,10 @@ pip install -r requirements.txt
 
 # 4. configurer sa clé API
 #    copier .env.example en .env, puis y mettre sa vraie clé Anthropic
+
+# 5. lancer DIAP comme un service (brique Backend)
+uvicorn diap.diap_api:app --reload
+#    puis ouvrir http://127.0.0.1:8000/docs
 ```
 
 ⚠️ **Sécurité** : ta clé API va dans `.env` (ignoré par Git). Ne la mets
@@ -66,8 +70,9 @@ diap/
 │   ├── meteo.py              # brique API  — appeler une API réelle
 │   ├── diap_meteo.py         # brique API  — function calling : DIAP décide
 │   ├── diap_memoire.py       # brique Mémoire — DIAP se souvient
-│   ├── diap_raisonnement.py  # brique Raisonnement — Chain of Thought : DIAP décompose un problème avant de conclure
-│   └── diap_outils.py        # brique Outils : agir sur le monde avec human in the loop
+│   ├── diap_raisonnement.py  # brique Raisonnement — décomposer avant de conclure
+│   ├── diap_outils.py        # brique Outils — agir, avec human in the loop
+│   └── diap_api.py           # brique Backend — DIAP devient un service (FastAPI)
 ├── docs/
 │   ├── architecture.md       # schéma et notes d'architecture de DIAP
 │   └── episodes.md           # correspondance épisodes ⇄ code

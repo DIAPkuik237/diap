@@ -11,7 +11,7 @@ Chaque épisode de la série **« De zéro à Architecte IA »** ajoute une capa
 | **Ép. 4** — DIAP oublie tout | 🟩 **Mémoire** | [`diap_memoire.py`](../diap/diap_memoire.py) | [regarder](https://youtu.be/UrDavH1GViY) |
 | **Ép. 5** — DIAP répond trop vite (réparons ça) | 🟩 Raisonnement | [`diap_raisonnement.py`](../diap/diap_raisonnement.py) | [regarder](https://youtu.be/ZllNQHJTifs) |
 | **Ép. 6** — DIAP passe à l'action | 🟩 **Outils** | [`diap_outils.py`](../diap/diap_outils.py) | [regarder](https://youtu.be/sHgAHJDI028) |
-
+| **Ép. 7** — DIAP quitte enfin mon terminal | 🟩 **Backend** | [`diap_api.py`](../diap/diap_api.py) | [regarder](https://youtu.be/zLEvYXPuejs) |
 ## 📂 Les fichiers, dans l'ordre de construction
 - **`premier_appel.py`** — le premier appel à un modèle de langage.
   DIAP prononce ses premiers mots.
@@ -27,7 +27,7 @@ Chaque épisode de la série **« De zéro à Architecte IA »** ajoute une capa
 
 - **`diap_raisonnement.py`** — *Chain of Thought* : DIAP décompose un problème avant de conclure, grâce au rôle *system* qui lui impose une méthode de travail.
 - **`diap_outils.py`** — un outil qui **agit** au lieu de lire : DIAP écrit un vrai fichier sur le disque, avec une confirmation humaine avant chaque action (*human in the loop*).
-
+- **`diap_api.py`** — le backend : DIAP n'est plus un script qui meurt après avoir répondu, mais un service qui **écoute** en continu et répond dans un navigateur.
 ---
 
 📺 **Playlist complète** : https://www.youtube.com/playlist?list=PLX1O_iVn_fzc
