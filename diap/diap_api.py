@@ -1,9 +1,12 @@
 """Mission 6 & 7 — Le corps de DIAP : un backend qui ne s'arrête jamais."""
 import os
+import time
+from collections import defaultdict, deque
+
 from dotenv import load_dotenv
 from anthropic import Anthropic
-from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse, JSONResponse
 from pydantic import BaseModel
 
 load_dotenv()
@@ -35,8 +38,37 @@ SYSTEME_DIAP = (
     "mais que DIAP est l'agent construit autour."
 )
 
-# garde-fou simple : on refuse les messages démesurés (protection du budget)
+# garde-fou 1 : on refuse les messages démesurés (protection du budget)
 LONGUEUR_MAX = 2000
+
+# ── garde-fou 2 : LIMITATION DU NOMBRE D'APPELS (rate limiting) ──
+# On mémorise, pour chaque visiteur, l'heure de ses derniers appels.
+# Si le quota est dépassé, on refuse AVANT d'appeler l'API : 0 token consommé.
+APPELS_MAX = 10          # nombre d'appels autorisés…
+FENETRE_SECONDES = 300   # …sur cette durée (ici : 10 appels / 5 minutes)
+
+_historique = defaultdict(deque)   # {adresse_ip: [horodatages]}
+
+
+def identifier_visiteur(request: Request) -> str:
+    """L'IP du visiteur. Derrière un hébergeur, la vraie IP est dans
+    l'en-tête X-Forwarded-For (sinon on ne verrait que celle du proxy)."""
+    transmis = request.headers.get("x-forwarded-for")
+    if transmis:
+        return transmis.split(",")[0].strip()
+    return request.client.host if request.client else "inconnu"
+
+
+def quota_depasse(visiteur: str) -> bool:
+    """Fenêtre glissante : on oublie les appels trop anciens, on compte le reste."""
+    maintenant = time.time()
+    appels = _historique[visiteur]
+    while appels and maintenant - appels[0] > FENETRE_SECONDES:
+        appels.popleft()
+    if len(appels) >= APPELS_MAX:
+        return True
+    appels.append(maintenant)
+    return False
 
 
 # ── PREMIÈRE URL : vérifier que DIAP est vivant ──
@@ -47,7 +79,21 @@ def accueil():
 
 # ── DEUXIÈME URL : parler à DIAP ──
 @app.post("/demander")
-def demander(question: Question):
+def demander(question: Question, request: Request):
+    # le garde-fou passe AVANT tout appel au modèle
+    visiteur = identifier_visiteur(request)
+    if quota_depasse(visiteur):
+        return JSONResponse(
+            status_code=429,          # 429 = Too Many Requests
+            content={
+                "question": "",
+                "reponse": ("Tu vas un peu vite pour moi. "
+                            f"Maximum {APPELS_MAX} questions toutes les "
+                            f"{FENETRE_SECONDES // 60} minutes. Reviens dans un instant."),
+                "tokens": {"entres": 0, "sortis": 0},
+            },
+        )
+
     texte = question.message.strip()
     if not texte:
         return {"question": "", "reponse": "Pose-moi une question.",
