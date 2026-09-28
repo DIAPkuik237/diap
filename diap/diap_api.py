@@ -155,20 +155,12 @@ def page_chat():
            border-left:3px solid var(--bleu);}
   #penseur.actif{display:flex;}
   .oeil{fill:#fff;}
+  /* Pas d'animation en boucle : tout est piloté en JS, au hasard,
+     pour que le regard ne soit jamais deux fois identique. */
   .pupille{fill:#2563eb;transform-origin:center;
-           animation:regarder 2.6s ease-in-out infinite;}
-  #yeux{animation:cligner 3.4s ease-in-out infinite;transform-origin:center;}
-  @keyframes regarder{
-    0%,14%   {transform:translateX(0)     translateY(0);}
-    22%,36%  {transform:translateX(-13px) translateY(2px);}
-    44%,58%  {transform:translateX(13px)  translateY(2px);}
-    66%,78%  {transform:translateX(0)     translateY(-7px);}
-    86%,100% {transform:translateX(0)     translateY(0);}
-  }
-  @keyframes cligner{
-    0%,92%,100%{transform:scaleY(1);}
-    95%        {transform:scaleY(.08);}
-  }
+           transition:transform .28s cubic-bezier(.34,1.3,.64,1);}
+  #yeux{transform-origin:center;transition:transform .09s ease-in-out;}
+  #yeux.ferme{transform:scaleY(.08);}
   #etat{color:var(--gris);font-size:.95rem;}
 
   #rep{margin-top:26px;background:var(--panneau);border-left:3px solid var(--vert);
@@ -203,7 +195,43 @@ def page_chat():
 <script>
 const ETATS = ["DIAP observe...", "DIAP reflechit...",
                "DIAP formule sa reponse..."];
-let minuteur = null;
+let minuteur = null, timerRegard = null, timerClin = null;
+
+function hasard(min, max){ return min + Math.random() * (max - min); }
+
+/* ── LE REGARD : une nouvelle direction, a intervalles irreguliers ── */
+function prochainRegard(){
+  const pupilles = document.querySelectorAll('.pupille');
+  // parfois il fixe droit devant, parfois il regarde ailleurs
+  let dx = 0, dy = 0;
+  if (Math.random() > 0.28) {
+    dx = hasard(-14, 14);
+    dy = hasard(-7, 6);
+  }
+  pupilles.forEach(function(p){
+    p.style.transform = 'translate(' + dx.toFixed(1) + 'px,' +
+                                       dy.toFixed(1) + 'px)';
+  });
+  // il tient ce regard entre 0,6 s et 2,8 s : jamais la meme duree
+  timerRegard = setTimeout(prochainRegard, hasard(600, 2800));
+}
+
+/* ── LE CLIGNEMENT : parfois simple, parfois double ── */
+function clignerUneFois(apres){
+  const yeux = document.getElementById('yeux');
+  yeux.classList.add('ferme');
+  setTimeout(function(){
+    yeux.classList.remove('ferme');
+    if (apres) setTimeout(apres, 110);
+  }, 95);
+}
+
+function prochainClin(){
+  const double = Math.random() < 0.22;   // ~1 fois sur 5 : double clignement
+  clignerUneFois(double ? function(){ clignerUneFois(null); } : null);
+  // intervalle irregulier, comme un vrai oeil
+  timerClin = setTimeout(prochainClin, hasard(1800, 5200));
+}
 
 function demarrerPenseur(){
   const p = document.getElementById('penseur');
@@ -215,10 +243,19 @@ function demarrerPenseur(){
     i = Math.min(i + 1, ETATS.length - 1);
     e.textContent = ETATS[i];
   }, 3500);
+  prochainRegard();
+  timerClin = setTimeout(prochainClin, hasard(700, 2000));
 }
 
 function arreterPenseur(){
   clearInterval(minuteur);
+  clearTimeout(timerRegard);
+  clearTimeout(timerClin);
+  const yeux = document.getElementById('yeux');
+  if (yeux) yeux.classList.remove('ferme');
+  document.querySelectorAll('.pupille').forEach(function(p){
+    p.style.transform = 'translate(0,0)';
+  });
   document.getElementById('penseur').classList.remove('actif');
 }
 
