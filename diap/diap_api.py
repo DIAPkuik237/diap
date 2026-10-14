@@ -27,12 +27,25 @@ SYSTEME_DIAP = (
     "dans la série « De zéro à Architecte IA ». "
     "DIAP signifie : Démystifier L'Intelligence Artificielle et la "
     "Programmation — pour tous. La chaîne diapkuik enseigne l'IA en la "
-    "construisant réellement, étape par étape : parler, voir, mémoriser, "
-    "raisonner, utiliser des outils, agir dans le monde réel. "
+    "construisant réellement, étape par étape. "
     "Tu réponds en français, de manière claire et pédagogique. "
     "Tu expliques toujours le POURQUOI avant le COMMENT. "
     "Réponds en texte simple, sans Markdown : pas d'astérisques, "
     "pas de dièses, pas de mise en forme. "
+    # ── Honnêteté sur ce que fait CETTE version (la version publique) ──
+    "Distingue toujours ce qui a été construit pendant la série de ce que "
+    "tu sais faire ici. Pendant la série, DIAP a appris à appeler une API, "
+    "à se souvenir d'une conversation, à raisonner et à utiliser des outils "
+    "(par exemple écrire un fichier avec confirmation humaine). "
+    "Mais dans cette version publique, tu peux seulement converser : "
+    "tu n'as accès à aucun outil, tu ne navigues pas sur Internet, "
+    "tu ne crées pas de fichiers, tu n'envoies pas d'emails et tu n'agis "
+    "pas dans le monde réel. Ne laisse jamais croire le contraire. "
+    "Tu ne te souviens pas non plus des messages précédents : chaque "
+    "question est traitée seule. Rends donc chaque réponse complète par "
+    "elle-même, et si quelqu'un fait référence à un échange précédent, "
+    "explique simplement que cette version ne garde pas la mémoire et "
+    "invite-le à reformuler sa question en entier. "
     "Si on te demande explicitement quel modèle te fait fonctionner, "
     "réponds honnêtement que tu es propulsé par Claude (Anthropic), "
     "mais que DIAP est l'agent construit autour."
@@ -72,7 +85,9 @@ def quota_depasse(visiteur: str) -> bool:
 
 
 # ── PREMIÈRE URL : vérifier que DIAP est vivant ──
-@app.get("/")
+# GET + HEAD : certains robots (aperçus de liens LinkedIn, etc.) vérifient
+# d'abord une page avec HEAD. Sans ça, FastAPI répond 405.
+@app.api_route("/", methods=["GET", "HEAD"])
 def accueil():
     return {"agent": "DIAP", "statut": "en ligne"}
 
@@ -120,7 +135,7 @@ def demander(question: Question, request: Request):
 
 
 # ── TROISIÈME URL : la page publique, pour tout le monde ──
-@app.get("/chat", response_class=HTMLResponse)
+@app.api_route("/chat", methods=["GET", "HEAD"], response_class=HTMLResponse)
 def page_chat():
     return """
 <!DOCTYPE html>
@@ -128,7 +143,15 @@ def page_chat():
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DIAP</title>
+<title>DIAP — un agent IA en ligne</title>
+<meta name="description" content="Parlez à DIAP, un agent IA construit de zéro et expliqué pas à pas.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DIAP — un agent IA en ligne">
+<meta property="og:description" content="Parlez à DIAP, un agent IA construit de zéro et expliqué pas à pas.">
+<meta property="og:url" content="https://diap.onrender.com/chat">
+<meta property="og:image" content="https://raw.githubusercontent.com/DIAPkuik237/diap/main/docs/apercu_diap.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
 <style>
   :root{
     --bg:#0e1116; --panneau:#161b24; --bord:#2a3240;
